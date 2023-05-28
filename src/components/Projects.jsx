@@ -37,22 +37,20 @@ const ProjectsComponent = () => {
     }, []);
 
     return (
-        <>
-            {data !== null ? (
-                data.data.posts.nodes.map((item) => (
-                    <Card
-                        key={item.id} // Asignar el campo "id" como la prop "key" de Card para que React pueda identificar cada componente
-                        cardkey={item.id} // Asignar el campo "id" como la prop "cardkey" que usara el componente Card.jsx como key interna
-                        title={item.title}
-                        featuredImage={item.featuredImage}
-                        repository={item.repository}
-                        website={item.website}
-                    />
-                ))
-            ) : (
-                <p>Loading...</p>
-            )}
-        </>
+        data !== null ? (
+            data.data.posts.nodes.map((item) => (
+                <Card
+                    key={item.id} // Asignar el campo "id" como la prop "key" de Card para que React pueda identificar cada componente
+                    cardkey={item.id} // Asignar el campo "id" como la prop "cardkey" que usara el componente Card.jsx como key interna
+                    title={item.title}
+                    featuredImage={item.featuredImage}
+                    repository={item.repository}
+                    website={item.website}
+                />
+            ))
+        ) : (
+            <p>Loading...</p>
+            )
     );
 };
 
