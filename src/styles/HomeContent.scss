@@ -3,25 +3,25 @@
 /* Medium	|641 - 1007px	|7" to 12"	|Tablets	|960x540 */
 /* Large	|1008px and up	|13" and up	PCs, Laptops, Surface Hub	|1024x640, 1366x768, 1920x1080 */
 
-@media screen and (max-width: 640px) {
-    .container {
-        background-color: burlywood;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-}
+// @media screen and (max-width: 640px) {
+//     .container {
+//         background-color: burlywood;
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         justify-content: center;
+//     }
+// }
 
 
-@media screen and (max-width: 1007px) and (min-width: 641px) {
-    div.example {
-        background: yellow;
-    }
-}
+// @media screen and (max-width: 1007px) and (min-width: 641px) {
+//     div.example {
+//         background: yellow;
+//     }
+// }
 
-@media screen and (min-width: 1008px) {
-    div.example {
-        background: green;
-    }
-}
+// @media screen and (min-width: 1008px) {
+//     div.example {
+//         background: green;
+//     }
+// }

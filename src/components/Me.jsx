@@ -1,39 +1,23 @@
 import React, { useEffect, useState } from "react";
 
-// funcion que toma una cadena de texto y elimina los divs que encuentre y su contenido 
-function cleanParagraph(content) {
-    const withoutDiv = content.replace(/<div[^>]*>.*?<\/div>/gi, "");
-    const cleanedContent = withoutDiv.trim();
-    return cleanedContent;
-}
-
-const MeComponent = () => {
+const Me = () => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
+        const api = 'https://portfolio.apps.marcobardalesrodriguez.site/api/'
+        const endpoint = api + 'collections/about_users/records'
         const fetchData = async () => {
             try {
-                const response = await fetch("https://blog.marcobardalesrodriguez.site/graphql", {
-                    method: "POST",
+                const response = await fetch(endpoint, {
+                    method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        query: `
-                        query {
-                            pages (where: {title: "Sobre mí"}){
-                                nodes {
-                                    id
-                                    content
-                                    featuredImage {node{mediaItemUrl}}
-                                }
-                            }
-                        }
-                        `,
-                    }),
+                        "Authorization": sessionStorage.getItem("token")
+                    }
                 });
-                const responseData = await response.json();
-                setData(responseData);
+                const data = await response.json();
+                console.log(data);
+                setData(data.items[0]);
             } catch (error) {
                 console.log(error);
             }
@@ -43,20 +27,17 @@ const MeComponent = () => {
 
     return (
         data !== null ? (
-            (() => {
-                const page = data.data.pages.nodes[0];
-                console.log(page);
-                return (
-                    <div className="container" key={page.id}>
-                        <div className="content" dangerouslySetInnerHTML={{ __html: cleanParagraph(page.content) }}></div>
-                        <img className="logo" src={page.featuredImage.node.mediaItemUrl} alt="logo.png" />
+            <>
+                <div className="container">
+                    <div className="content" dangerouslySetInnerHTML={{ __html: data.description}}>
+                        {/* {data.description} */}
                     </div>
-                );
-            })()
+                </div>
+            </>
         ) : (
-            <p>"Cargando..."</p>
+            <p>Cargando...</p>
         )
     );
 };
 
-export default MeComponent;
+export default Me;

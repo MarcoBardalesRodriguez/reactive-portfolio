@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import '../styles/HomeContent.scss'
-// import Styles from '../styles.HomeContent.scss'
+// import '../styles/HomeContent.scss'
 import Me from './Me'
 import Projects from './Projects'
+import Skills from './Skills'
 
 const Button = ({ label, onClick }) => (
   <button className='button-option' onClick={onClick}>{label}</button>
@@ -10,8 +10,7 @@ const Button = ({ label, onClick }) => (
 
 const Component1 = () => <Me />
 const Component2 = () => <Projects />
-const Component3 = () => <div>Vista de habilidades</div>
-const Component4 = () => <div>Formulario de contacto</div>
+const Component3 = () => <Skills />
 
 export default function HomeContent() {
   const [activeComponent, setActiveComponent] = useState(<Component1 />)
@@ -26,8 +25,7 @@ export default function HomeContent() {
         <Button label="Sobre mí" onClick={() => handleClick(<Component1 />)} />
         <Button label="Proyectos" onClick={() => handleClick(<Component2 />)} />
         <Button label="Habilidades" onClick={() => handleClick(<Component3 />)} />
-        <Button label="Contacto" onClick={() => handleClick(<Component4 />)} />
-        <button className='button-option'><a href="https://blog.marcobardalesrodriguez.site">Blog</a></button>
+        <button className='button-option'><a href="https://blog.apps.marcobardalesrodriguez.site" target="_blank">Blog</a></button>
       </div>
       <div className='content'>
         {activeComponent}
